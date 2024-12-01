@@ -1,5 +1,4 @@
 import GameList from "../components/GameList";
-import Header from "../components/header";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 

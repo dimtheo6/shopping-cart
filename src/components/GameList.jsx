@@ -1,6 +1,11 @@
 import { useState } from "react";
 import useFetch from "./useFetch";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
+GameList.propTypes = {
+  query: PropTypes.string,
+}
 
 const API_KEY = "14366b3fb284408cbbb8c14edf86549e";
 

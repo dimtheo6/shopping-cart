@@ -4,7 +4,7 @@ import "./carousel.css";
 import PropTypes from "prop-types";
 
 Carousel.propTypes = {
-    imageUrl: PropTypes.string,
+    imageUrl: PropTypes.array,
 }
 
 export default function Carousel({ imageUrl }) {

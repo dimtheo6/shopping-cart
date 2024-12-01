@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
+Header.propTypes = {
+  query: PropTypes.string,
+  setQuery: PropTypes.func,
+}
 
 export default function Header({ query, setQuery }) {
   const [search, setSearch] = useState("");
@@ -7,7 +13,7 @@ export default function Header({ query, setQuery }) {
 
   useEffect(()=>{
     setQuery(search)
-  },[search])
+  },[search,setQuery])
 
   const handleClick = () => {
     setSearch('')
