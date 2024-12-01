@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  background-image: url(./assets/background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.item{
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.item:hover{
+ transform: scale(1.1);
+}
