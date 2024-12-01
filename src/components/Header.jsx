@@ -23,7 +23,6 @@ export default function Header({ query, setQuery }) {
       <input
         type="text"
         value={search}
-        //onClick={handleClick}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleClick();

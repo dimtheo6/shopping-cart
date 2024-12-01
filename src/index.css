@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-3xl font-bold text-white;
+  }
+}
+
+:root{
+  margin: 0;
+  padding: 0;
+}
 
 body{
   background-image: url(./assets/background.jpeg);

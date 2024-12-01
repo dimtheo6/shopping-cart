@@ -1,12 +1,25 @@
 import { useState } from "react";
 import useFetch from "./useFetch";
+import { useNavigate } from "react-router-dom";
 
 const API_KEY = "14366b3fb284408cbbb8c14edf86549e";
 
 export default function GameList({ query }) {
+
+  const [clickedGame,setClickedGame] = useState(null);
+  const [gameData, setGameData] = useState(null);
+
+  const navigate = useNavigate();
+
   const { data, loading, error } = useFetch(
-    `https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=10`
+    `https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=10`,
+    true
   );
+
+  const handleClick = (game) =>{
+    setClickedGame(game);
+    navigate('/games/game',{state:{clickedGame:game}})
+  }
 
   const getPlatformStr = (platforms) => {
     if (!platforms || platforms.length === 0) {
@@ -42,7 +55,7 @@ export default function GameList({ query }) {
       ) : data ? (
         <div className="container flex flex-wrap gap-3 justify-center">
           {data.map((game) => (
-            <div className="item w-96 border rounded-lg bg-slate-800 text-white" key={game.id}>
+            <div className="item w-96 border rounded-lg bg-slate-800 text-white" key={game.id} onClick={()=> handleClick(game)}>
                 <img className='game_image h-48 min-w-full rounded-lg' src={game.background_image} alt={`${game.name} image`} />
               <h4 className="p-2">
                 {game.name}
@@ -51,6 +64,7 @@ export default function GameList({ query }) {
                   {getPlatformStr(game.parent_platforms)}
                 </span>
               </h4>
+              <p>Price: {game.price ? `$${game.price}` : "Price not available"}</p>
             </div>
           ))}
         </div>
