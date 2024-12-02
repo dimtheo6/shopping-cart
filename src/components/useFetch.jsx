@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, fetchPrices = false) => {
+const useFetch = (url, fetchInfo = false) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,14 +17,33 @@ const useFetch = (url, fetchPrices = false) => {
 
         let results = jsonData.results;
 
-        // If fetchPrices is enabled, get prices for each game
-        if (fetchPrices) {
-          results = await Promise.all(
-            results.map(async (game) => {
-              const price = await fetchGamePrice(game.slug); // Fetch price for the game
-              return { ...game, price };
-            })
-          );
+        results = await Promise.all(
+          results.map(async (game) => {
+            const price = await fetchGamePrice(game.slug); // Fetch price for the game
+             
+            return {
+              ...game,
+              price
+            };
+          })
+        );
+
+        // If fetchInfo is enabled, get prices for each game
+
+        if (fetchInfo) {
+         results = await Promise.all(
+          results.map(async (game) => {
+            const price = await fetchGamePrice(game.slug); // Fetch price for the game
+             const descResponse = await fetch(
+               `https://api.rawg.io/api/games/${game.slug}?key=14366b3fb284408cbbb8c14edf86549e`
+              );
+               const descData = await descResponse.json();
+            return {
+              ...game,
+              price ,description: descData.description_raw ,
+            };
+          })
+        );
         }
 
         setData(results);
@@ -37,7 +56,7 @@ const useFetch = (url, fetchPrices = false) => {
     };
 
     fetchData();
-  }, [url, fetchPrices]);
+  }, [url, fetchInfo]);
 
   return { data, loading, error };
 };

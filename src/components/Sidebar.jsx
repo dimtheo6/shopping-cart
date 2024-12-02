@@ -18,7 +18,7 @@ export default function Sidebar() {
   const buttonStyles = `flex flex-col gap-2`;
   
   return (
-    <aside className="sidebar text-white max-w-80 flex-1 bg-black sticky top-0 overflow-auto py-8 px-10">
+    <aside className="sidebar text-white w-40 md:w-56 lg:w-64  sticky top-0 left-0 overflow-auto py-8 px-6 h-screen bg-blue-500" >
       <div className="sidebar_container">
         <h1>New Releases</h1>
         <div className={buttonStyles}>

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCartShopping,
+} from "@fortawesome/free-solid-svg-icons";
 
 Header.propTypes = {
   query: PropTypes.string,
@@ -21,7 +25,7 @@ export default function Header({ query, setQuery }) {
   };
 
   return (
-    <header className="flex justify-around">
+    <header className="flex justify-around p-8">
       <Link to="/">
         {" "}
         <h1 className="font-extrabold text-5xl">Logo</h1>
@@ -41,7 +45,7 @@ export default function Header({ query, setQuery }) {
       />
       {/* Navigate to the results page with query as a query parameter */}
 
-      <button>Cart</button>
+      <button className="text-white"><FontAwesomeIcon icon={faCartShopping} /></button>
     </header>
   );
 }
