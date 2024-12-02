@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 export default function Games() {
   const location = useLocation();
 
-  const searchQuery = location.state?.searchQuery || "";
+  const { searchQuery, btnQuery } = location.state || { searchQuery: '', btnQuery: '' };
 
   return (
     <>
@@ -13,7 +13,7 @@ export default function Games() {
       <Sidebar />
 
       <div className="flex-grow flex justify-center items-center p-10">
-        <GameList query={searchQuery} />
+        <GameList query={searchQuery} btnQuery={btnQuery} />
       </div>
     </>
   );

@@ -14,13 +14,15 @@ export default function App() {
         return "default-bg";
     }
   };
+  
+  console.log("App - Query:", query); // Add this to debug
 
   return (
     <>
       <div className={`main ${getBackgroundClass()}`}>
         <Header query={query} setQuery={setQuery} />
         <div className=" flex justify-center ">
-          <Outlet />
+          <Outlet context={{query,setQuery}}/>
         </div>
       </div>
     </>
