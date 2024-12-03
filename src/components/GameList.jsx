@@ -22,7 +22,7 @@ export default function GameList({ query, btnQuery}) {
 
   const { data, loading, error } = useFetch(
     `https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=12${btnQuery}`,
-    false
+    true
   );
 
   const handleClick = (game) => {
