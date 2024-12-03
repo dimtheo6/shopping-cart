@@ -2,11 +2,13 @@ import { useLocation } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faLeftLong,faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useCart } from "../components/CartContext";
 
 export default function Game() {
   const [isVisible, setIsVisible] = useState(false);
+  const { cart, setCart } = useCart();
 
   const location = useLocation();
   const game = location.state?.clickedGame || "";
@@ -17,6 +19,19 @@ export default function Game() {
 
   const handleShow = () => {
     setIsVisible(!isVisible);
+  };
+
+  const addToCart = (game) => {
+    if (cart.some((item) => item.id === game.id)) {
+      console.log("already in cart");
+      return;
+    }
+
+    setCart((prevCart) => {
+      const newCart = [...prevCart, game];
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      return newCart;
+    });
   };
 
   return (
@@ -107,7 +122,13 @@ export default function Game() {
           </div>
           <div className="flex justify-between items-center p-5 mt-4 bg-gradient-to-r from-background to-card-background rounded-lg">
             <p className="font-bold text-lg">{`${game.price}$`}</p>
-            <button className="py-2 px-4  text-white font-bold rounded-lg hover:bg-black hover:bg-opacity-15 transition-all">Add to cart</button>
+            <button
+              onClick={() => addToCart(game)}
+              className="py-2 px-4  text-white font-bold rounded-lg hover:bg-black hover:bg-opacity-15 transition-all"
+            >
+              {cart.some((item) => item.id === game.id)
+                ? (<div className="text-green-500">Added <FontAwesomeIcon icon={faCheck}/></div>) : (`Add to cart`)}
+            </button>
           </div>
         </div>
       </div>

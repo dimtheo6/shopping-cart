@@ -12,7 +12,12 @@ Header.propTypes = {
   setQuery: PropTypes.func,
 };
 
-export default function Header({ query, setQuery,cartVisible, setCartVisible }) {
+export default function Header({
+  query,
+  setQuery,
+  cartVisible,
+  setCartVisible,
+}) {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -25,9 +30,9 @@ export default function Header({ query, setQuery,cartVisible, setCartVisible }) 
     navigate("/games", { state: { searchQuery: query } });
   };
 
-  const handleShowCart = () =>{
-    setCartVisible(!cartVisible)
-  }
+  const handleShowCart = () => {
+    setCartVisible(!cartVisible);
+  };
 
   return (
     <header className="flex justify-between py-8 px-16">
@@ -55,7 +60,8 @@ export default function Header({ query, setQuery,cartVisible, setCartVisible }) 
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className="bg-white absolute right-2 cursor-pointer text-black"
-         onClick={handleClick}/>
+          onClick={handleClick}
+        />
         {/* Navigate to the results page with query as a query parameter */}
       </div>
 

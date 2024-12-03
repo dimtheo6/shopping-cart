@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 
 export default function Cart({ cart, setCart }) {
   const [gameCount, setGameCount] = useState(0);
+  const [total, setTotal] = useState(0);
 
   console.log("games in cart", cart);
 
   useEffect(() => {
     setGameCount(cart.length);
+
+    const total = cart.reduce((acc, game) => acc + (game.price || 0), 0);
+    setTotal(total);
   }, [cart]);
 
   const handleClear = () => {
@@ -21,29 +25,41 @@ export default function Cart({ cart, setCart }) {
 
   return (
     <>
-      <div className="header flex text-white justify-between">
-        <h1>Games: {gameCount}</h1>
-        <button onClick={handleClear}>clear</button>
-      </div>
-
-      <div className="cart_container flex flex-col gap-10">
-        {cart.map((game, index) => (
-          <div key={game.id} className="w-full text-white flex flex-col ">
-            <div className="image">
-              <img
-                src={game.background_image}
-                alt={`${game.name} image`}
-                className=" "
-              />
-            </div>
-            <h4>{game.name}</h4>
-            <div className="flex justify-between px-1">
-              <p>{`${game.price}$`}</p>
-              <button onClick={() => handleDelete(index)}>X</button>
-            </div>
+      <div className="cart_container flex flex-col justify-between h-full gap-5">
+        <div>
+          <div className="header flex text-white justify-between pb-5">
+            <h1>Items: {gameCount}</h1>
+            <button onClick={handleClear} className="text-neutral-400">clear</button>
           </div>
-        ))}
-        <div>Total: </div>
+
+          <div className="item_container flex flex-col gap-10">
+            {cart.map((game, index) => (
+              <div key={game.id} className="w-full text-white flex flex-col bg-background">
+                <div className="image">
+                  <img
+                    src={game.background_image}
+                    alt={`${game.name} image`}
+                    className=" "
+                  />
+                </div>
+                <div className="flex justify-between py-2 items-center">
+                  <div className="flex flex-col justify-between px-3">
+                    <h4>{game.name}</h4>
+                    <p>{`${game.price}$`}</p>
+                  </div>
+
+                  <button
+                    className="bg-card-background rounded-full min-w-6 min-h-6 flex items-center justify-center mr-2 hover:bg-opacity-50 text-sm"
+                    onClick={() => handleDelete(index)}
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <h1>Total: {total} </h1>
       </div>
     </>
   );

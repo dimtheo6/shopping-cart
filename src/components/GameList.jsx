@@ -30,7 +30,7 @@ export default function GameList({ query, btnQuery}) {
     navigate("/games/game", { state: { clickedGame: game } });
   };
 
-  const addToCart = (game) =>{
+   const addToCart = (game) =>{
     if (cart.some(item => item.id === game.id)) {
       console.log('already in cart')
       return;
