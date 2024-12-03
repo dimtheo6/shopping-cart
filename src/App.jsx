@@ -1,4 +1,4 @@
-import Header from "./components/header";
+import Header from "./components/Header";
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Cart from "./components/Cart";
@@ -23,7 +23,7 @@ import {
 export default function App() {
   const [query, setQuery] = useState("");
   const [cart, setCart] = useSavedCart();
-  const [cartVisible, setCartVisible] = useState(true);
+  const [cartVisible, setCartVisible] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
