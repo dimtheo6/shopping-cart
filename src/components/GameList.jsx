@@ -79,6 +79,9 @@ export default function GameList({ query, btnQuery}) {
 
   return (
     <>
+    {data.length === 0 && (
+      <h1 className="absolute top-1/3 left-1/2 transform -translate-x-1/3 -translate-y-1/2 w-96 text-center">No results found</h1>
+    )}
       <div className="container flex flex-wrap gap-8 justify-center">
         {data.map((game) => (
           <div

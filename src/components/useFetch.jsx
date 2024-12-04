@@ -33,14 +33,13 @@ const useFetch = (url, fetchInfo = false) => {
         if (fetchInfo) {
          results = await Promise.all(
           results.map(async (game) => {
-            const price = await fetchGamePrice(game.slug); // Fetch price for the game
-             const descResponse = await fetch(
-               `https://api.rawg.io/api/games/${game.slug}?key=14366b3fb284408cbbb8c14edf86549e`
+             const descResponse = await fetch( 
+               `https://api.rawg.io/api/games/${game.slug}?key=14366b3fb284408cbbb8c14edf86549e`  // Fetch description for the game
               );
                const descData = await descResponse.json();
             return {
               ...game,
-              price ,description: descData.description_raw ,
+             description: descData.description_raw ,
             };
           })
         );
