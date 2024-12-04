@@ -24,6 +24,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [cart, setCart] = useSavedCart();
   const [cartVisible, setCartVisible] = useState(false);
+  const [gameCount, setGameCount] = useState(0);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,6 +60,8 @@ export default function App() {
             setQuery={setQuery}
             cartVisible={cartVisible}
             setCartVisible={setCartVisible}
+            gameCount={gameCount}
+            setGameCount={setGameCount}
           />
 
           {cartVisible && (
@@ -74,7 +77,7 @@ export default function App() {
               cartVisible ? "right-0" : `-right-full`
             } bg-card-background h-full w-80 px-10 py-5 overflow-auto no-scrollbar transition-all duration-500 ease-in-out z-50`}
           >
-            <Cart cart={cart} setCart={setCart} />
+            <Cart cart={cart} setCart={setCart} gameCount={gameCount} setGameCount={setGameCount}/>
           </div>
 
           <div className=" flex justify-center ">

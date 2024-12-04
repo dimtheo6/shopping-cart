@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export default function Cart({ cart, setCart }) {
-  const [gameCount, setGameCount] = useState(0);
+export default function Cart({ cart, setCart,gameCount,setGameCount }) {
+ 
   const [total, setTotal] = useState(0);
 
   console.log("games in cart", cart);
@@ -59,7 +59,7 @@ export default function Cart({ cart, setCart }) {
             ))}
           </div>
         </div>
-        <h1>Total: {total} </h1>
+        <h1>Total: {total}$ </h1>
       </div>
     </>
   );

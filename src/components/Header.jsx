@@ -17,6 +17,7 @@ export default function Header({
   setQuery,
   cartVisible,
   setCartVisible,
+  gameCount,
 }) {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -65,8 +66,13 @@ export default function Header({
         {/* Navigate to the results page with query as a query parameter */}
       </div>
 
-      <button className="text-white" onClick={handleShowCart}>
-        <FontAwesomeIcon icon={faCartShopping} />
+      <button className="text-white relative" onClick={handleShowCart}>
+        <FontAwesomeIcon icon={faCartShopping} className="hover:text-blue-300"/>
+        {gameCount > 0 && (
+        <span className="absolute -top-0 -right-3 text-xs bg-blue-600 rounded-full h-4 w-4 flex justify-center items-center">
+          {gameCount}
+        </span>
+      )}
       </button>
     </header>
   );
