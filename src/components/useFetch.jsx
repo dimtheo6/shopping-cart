@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url, fetchInfo = false) => {
+const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,30 +20,13 @@ const useFetch = (url, fetchInfo = false) => {
         results = await Promise.all(
           results.map(async (game) => {
             const price = await fetchGamePrice(game.slug); // Fetch price for the game
-             
+
             return {
               ...game,
-              price
+              price,
             };
           })
         );
-
-        // If fetchInfo is enabled, get descriptions for each game
-
-        if (fetchInfo) {
-         results = await Promise.all(
-          results.map(async (game) => {
-             const descResponse = await fetch( 
-               `https://api.rawg.io/api/games/${game.slug}?key=14366b3fb284408cbbb8c14edf86549e`  // Fetch description for the game
-              );
-               const descData = await descResponse.json();
-            return {
-              ...game,
-             description: descData.description_raw ,
-            };
-          })
-        );
-        }
 
         setData(results);
       } catch (err) {
@@ -55,13 +38,13 @@ const useFetch = (url, fetchInfo = false) => {
     };
 
     fetchData();
-  }, [url, fetchInfo]);
+  }, [url]);
 
   return { data, loading, error };
 };
 
 // Mock function for fetching game prices (replace with actual API or scraping logic)
-const fetchGamePrice = async (gameSlug) => {
+const fetchGamePrice = async () => {
   return Math.floor(Math.random() * 50) + 10; // Mock price for demonstration
 };
 

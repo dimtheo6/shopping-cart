@@ -1,13 +1,19 @@
 import { useLocation } from "react-router-dom";
 import Carousel from "../components/Carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faLeftLong,faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faLeftLong,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useCart } from "../components/CartContext";
 
 export default function Game() {
   const [isVisible, setIsVisible] = useState(false);
+  const [gameData, setGameData] = useState(null); // State for fetched data
+  const [error, setError] = useState(null); // State for errors
   const { cart, setCart } = useCart();
 
   const location = useLocation();
@@ -16,6 +22,24 @@ export default function Game() {
 
   console.log(`the game is `, game);
   console.log(`the image is `, images);
+
+  // fetch description
+  useEffect(() => {
+    if (!game.slug) return; // Avoid fetching if slug is undefined
+
+    fetch(
+      `https://api.rawg.io/api/games/${game.slug}?key=14366b3fb284408cbbb8c14edf86549e`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => setGameData(data))
+      .catch((err) => setError(err.message));
+  }, [game.slug]); // Re-run the effect if game.slug changes
+
 
   const handleShow = () => {
     setIsVisible(!isVisible);
@@ -59,24 +83,9 @@ export default function Game() {
             <section className="game_description  max-h-80 p-4 flex flex-col gap-3 overflow-auto rounded-lg no-scrollbar bg-gradient-to-tr from-background to-card-background ">
               <h1>Description</h1>
               <p className="">
-                {game.description
-                  ? game.description
-                  : `Lorem ipsum odor amet, consectetuer adipiscing elit. Litora
-                lobortis nascetur sagittis litora platea natoque pharetra at.
-                Dictum senectus nibh primis sociosqu vehicula ullamcorper eu.
-                Pharetra cubilia per lorem tellus ullamcorper arcu pharetra duis
-                urna. Tortor velit at feugiat curabitur pulvinar elementum
-                torquent. Risus nascetur quisque aliquet ad hendrerit nascetur
-                volutpat vulputate. Habitant tempor fermentum enim cursus
-                torquent; efficitur congue vel. Congue vestibulum euismod nulla
-                torquent placerat a. Conubia aliquam egestas quam integer
-                pellentesque. Vivamus aptent aenean nullam urna, sollicitudin
-                gravida pretium sit purus. Bibendum a justo et suspendisse mus
-                ac himenaeos. Litora imperdiet torquent efficitur etiam nam
-                consectetur lacinia dictumst mauris. Porttitor facilisi est nunc
-                rutrum non congue sagittis urna. Ullamcorper sem sapien magnis
-                non phasellus pulvinar. Aliquam iaculis molestie vivamus blandit
-                consectetur risus commodo torquent.`}
+                {gameData?.description_raw
+                  ? gameData?.description_raw
+                  : `Description Loading...`}
               </p>
             </section>
 
@@ -126,8 +135,13 @@ export default function Game() {
               onClick={() => addToCart(game)}
               className="py-2 px-4  text-white font-bold rounded-lg hover:bg-black hover:bg-opacity-15 transition-all"
             >
-              {cart.some((item) => item.id === game.id)
-                ? (<div className="text-green-500">Added <FontAwesomeIcon icon={faCheck}/></div>) : (`Add to cart`)}
+              {cart.some((item) => item.id === game.id) ? (
+                <div className="text-green-500">
+                  Added <FontAwesomeIcon icon={faCheck} />
+                </div>
+              ) : (
+                `Add to cart`
+              )}
             </button>
           </div>
         </div>
