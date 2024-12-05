@@ -28,7 +28,7 @@ const useFetch = (url, fetchInfo = false) => {
           })
         );
 
-        // If fetchInfo is enabled, get prices for each game
+        // If fetchInfo is enabled, get descriptions for each game
 
         if (fetchInfo) {
          results = await Promise.all(
