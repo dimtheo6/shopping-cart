@@ -14,6 +14,12 @@
   font-family: sans-serif;
 }
 
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: #121212;
+  height: 100%;
+}
+
 .item {
   transition: transform 0.2s;
 }
@@ -25,7 +31,6 @@
 .main {
   width: 100%;
   min-height: 100vh;
- 
 }
 
 .home-bg {
@@ -43,16 +48,14 @@
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
- /* Hide scrollbar for IE, Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
-}
-
-
 
 .loader {
   display: inline-flex;
@@ -64,15 +67,29 @@
   height: 20px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background:
-    radial-gradient(farthest-side,#000 95%,#0000) 35% 35%/6px 6px no-repeat
-    #fff;
+  background: radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/6px 6px
+    no-repeat #fff;
   animation: l5 3s infinite;
 }
 @keyframes l5 {
-  0%,11%   {background-position:35% 35%}
-  14%,36%  {background-position:65% 35%}
-  38%,61%  {background-position:65% 65%}
-  64%,86%  {background-position:35% 65%}
-  88%,100% {background-position:35% 35%}
+  0%,
+  11% {
+    background-position: 35% 35%;
+  }
+  14%,
+  36% {
+    background-position: 65% 35%;
+  }
+  38%,
+  61% {
+    background-position: 65% 65%;
+  }
+  64%,
+  86% {
+    background-position: 35% 65%;
+  }
+  88%,
+  100% {
+    background-position: 35% 35%;
+  }
 }
