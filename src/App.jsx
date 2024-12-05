@@ -85,7 +85,7 @@ export default function App() {
 
             {/* Home Page */}
             {useLocation().pathname === "/" && (
-              <div className="quick_navigation fixed right-16 top-1/4 flex flex-col  bg-gray-200 bg-opacity-95 text-black p-7 rounded-xl  text-center gap-3">
+              <div className="quick_navigation fixed right-16 top-1/4 flex flex-col  bg-gray-200 bg-opacity-95 text-black p-7 rounded-xl  text-center gap-3 max-sm:right-auto">
                 <h2 className="text-2xl font-bold">Quick Navigation</h2>
                 <div className="container flex flex-col  [&>h3]:cursor-pointer [&>h3]:flex [&>h3]:items-center [&>h3]:gap-2 gap-2 ">
                   <h3 className={buttonStyles} onClick={() => handleClick("")}>

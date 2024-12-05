@@ -36,17 +36,17 @@ export default function Header({
   };
 
   return (
-    <header className="flex justify-between py-8 px-16">
+    <header className="flex justify-between py-8 px-16 max-sm:px-4 max-sm:py-4">
       <Link to="/">
         {" "}
-        <h1 className="font-extrabold text-5xl">Logo</h1>
+        <h1 className="font-extrabold text-5xl max-sm:text-3xl">Logo</h1>
       </Link>
 
       <div className="relative flex  items-center gap-2">
         <input
           type="text"
           value={search}
-          className="right-0 rounded-lg h-8 p-2 w-56 focus-visible:w-96 transition-all duration-200 placeholder:text-sm
+          className="right-0 rounded-lg h-8 p-2 w-56 md:focus-visible:w-96 transition-all duration-200 placeholder:text-sm max-sm:w-46
           "
           onKeyDown={(e) => {
             if (e.key === "Enter") {
