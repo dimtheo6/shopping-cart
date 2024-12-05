@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -79,10 +79,11 @@ export default function GameList({ query, btnQuery }) {
           No results found
         </h1>
       )}
+
       <div className="container flex flex-wrap gap-8 justify-center">
         {data.map((game) => (
           <div
-            className="item w-full sm:w-full md:w-72 lg:w-80 rounded-lg bg-card-background text-white"
+            className="item max-sm:w-full sm:w-9/12  lg:w-80 aspect-[16/9] rounded-lg bg-card-background text-white"
             key={game.id}
           >
             <img

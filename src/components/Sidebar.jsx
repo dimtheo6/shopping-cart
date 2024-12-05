@@ -10,14 +10,16 @@ import {
   faTree,
   faHandFist,
   faCalendar,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFortAwesome } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { buildDateFilter,buildWeekFilter,buildLast30DaysFilter } from "./utils";
 
 export default function Sidebar() {
   const [activeFilter, setActiveFilter] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
   const buttonStyles = `flex flex-col gap-2 [&>p]:flex [&>p]:items-center [&>p]:gap-2 py-3 [&>p]:cursor-pointer [&>p]:py-1`;
@@ -25,11 +27,19 @@ export default function Sidebar() {
 
   const handleClick = (btnQuery, filterKey) => {
     setActiveFilter(filterKey);
+    setIsVisible(false);
     navigate("/games", { state: { searchQuery: "", btnQuery } });
   };
 
+
+  const handleShow = () =>{
+    setIsVisible(!isVisible);
+  }
+
   return (
-    <aside className="sidebar flex flex-col gap-5 text-white w-56 md:w-56 lg:w-72 sticky top-0 left-0 overflow-auto py-8 px-10 h-screen bg-background">
+    <>
+    <button onClick={handleShow} className='fixed bottom-8 right-6 text-black bg-white p-2 w-10 h-10  rounded-full font-bold md:hidden max-md:z-50'> {isVisible ? 'X' : <FontAwesomeIcon icon={faBars} />}</button>
+    <aside className={`sidebar flex flex-col gap-5 text-white w-56 md:w-72 sticky top-0 left-0 overflow-auto py-8 px-10 h-screen bg-background ${isVisible ? '' : 'max-md:hidden' } max-md:w-full max-md:fixed max-md:z-40 `}>
       {/* New Releases */}
       <div className="sidebar_container flex flex-col gap-1">
         <h1>New Releases</h1>
@@ -70,11 +80,11 @@ export default function Sidebar() {
       <div className="sidebar_container flex flex-col gap-1">
         <h1>Top</h1>
         <div className={buttonStyles}>
-          <p onClick={() => handleClick(`&dates=2024-01-01,2024-12-31`, "best2024")} className="group">
+          <p onClick={() => handleClick(`&dates=2024-01-01,2024-12-31`, "Best of the year")} className="group">
             <FontAwesomeIcon
               icon={faTrophy}
               className={`${iconStyles} ${
-                activeFilter === "best2024" ? "text-black bg-white" : "bg-card-background text-white"
+                activeFilter === "Best of the year" ? "text-black bg-white" : "bg-card-background text-white"
               }`}
             />
             Best of the year
@@ -158,5 +168,7 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
+    </>
+    
   );
 }

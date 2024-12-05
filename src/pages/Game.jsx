@@ -63,11 +63,11 @@ export default function Game() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <Link to="/games">
-          <h1>
+          <h1 className="max-sm:text-xl max-md:text-2xl w-32">
             <FontAwesomeIcon icon={faLeftLong} /> Store
           </h1>
         </Link>
-        <h1>{game.name}</h1>
+        <h1 className="flex max-sm:text-2xl">{game.name}</h1>
       </div>
 
       {/* Main Content */}
