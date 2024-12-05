@@ -1,33 +1,31 @@
-.button{
-    transition: background-color 100ms ease-in-out;
+.button {
+  transition: background-color 100ms ease-in-out;
 }
 
 .button:hover,
-.button:focus-visible{
-    background-color:rgb(0, 0, 0, 0.2);
+.button:focus-visible {
+  background-color: rgb(0, 0, 0, 0.2);
 }
 
 .button:hover > *,
-.button:focus-visible > *{
-
-    animation: squish 0.2s ease-in-out;
+.button:focus-visible > * {
+  animation: squish 0.2s ease-in-out;
 }
 
-img{
-    transition: translate 0.3s ease-in-out;
+img {
+  transition: translate 0.3s ease-in-out;
 }
 
-.slider{
-    transition: scale 0.1s ease-in-out;
+.slider {
+  transition: scale 0.1s ease-in-out;
 }
 .slider_dot:hover,
-.slider_dot:focus-visible{
-    scale: 1.2;
+.slider_dot:focus-visible {
+  scale: 1.2;
 }
 
-@keyframes squish{
-    50%{
-        scale: 1.4 0.6
-    }
+@keyframes squish {
+  50% {
+    scale: 1.4 0.6;
+  }
 }
-

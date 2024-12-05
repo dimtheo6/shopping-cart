@@ -20,9 +20,6 @@ export default function Game() {
   const game = location.state?.clickedGame || "";
   const images = game.short_screenshots;
 
-  console.log(`the game is `, game);
-  console.log(`the image is `, images);
-
   // fetch description
   useEffect(() => {
     if (!game.slug) return; // Avoid fetching if slug is undefined
@@ -40,14 +37,12 @@ export default function Game() {
       .catch((err) => setError(err.message));
   }, [game.slug]); // Re-run the effect if game.slug changes
 
-
   const handleShow = () => {
     setIsVisible(!isVisible);
   };
 
   const addToCart = (game) => {
     if (cart.some((item) => item.id === game.id)) {
-      console.log("already in cart");
       return;
     }
 

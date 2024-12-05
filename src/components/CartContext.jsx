@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from "react";
+import PropTypes from "prop-types";
 
 const CartContext = createContext();
 
@@ -12,4 +13,10 @@ export const CartProvider = ({ children, cart, setCart }) => {
       {children}
     </CartContext.Provider>
   );
+};
+
+CartProvider.propTypes = {
+  children: PropTypes.node,
+  cart: PropTypes.array,
+  setCart: PropTypes.func,
 };

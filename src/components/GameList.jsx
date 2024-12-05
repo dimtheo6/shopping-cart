@@ -8,6 +8,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 GameList.propTypes = {
   query: PropTypes.string,
+  btnQuery: PropTypes.string,
 };
 
 const API_KEY = "14366b3fb284408cbbb8c14edf86549e";
@@ -29,7 +30,6 @@ export default function GameList({ query, btnQuery }) {
 
   const addToCart = (game) => {
     if (cart.some((item) => item.id === game.id)) {
-      console.log("already in cart");
       return;
     }
 
@@ -57,8 +57,6 @@ export default function GameList({ query, btnQuery }) {
       return platformStr;
     }
   };
-
-  console.log(data);
 
   if (loading) {
     return <div className="text-white font-bold text-3xl loader"></div>;

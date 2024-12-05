@@ -4,8 +4,8 @@ import "./carousel.css";
 import PropTypes from "prop-types";
 
 Carousel.propTypes = {
-    imageUrl: PropTypes.array,
-}
+  imageUrl: PropTypes.array,
+};
 
 export default function Carousel({ imageUrl }) {
   const [imageIndex, setImageIndex] = useState(0);
@@ -49,14 +49,17 @@ export default function Carousel({ imageUrl }) {
         className={`button ${buttonStyles} left-0 `}
         aria-label="View Previous Image"
       >
-        <ArrowBigLeft className="stroke-white fill-black h-8 w-8" aria-hidden/>
+        <ArrowBigLeft className="stroke-white fill-black h-8 w-8" aria-hidden />
       </button>
       <button
         onClick={showNextImage}
         className={`button ${buttonStyles} right-0`}
         aria-label="View Next Image"
       >
-        <ArrowBigRight className="stroke-white fill-black h-8 w-8" aria-hidden/>
+        <ArrowBigRight
+          className="stroke-white fill-black h-8 w-8"
+          aria-hidden
+        />
       </button>
 
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
@@ -69,7 +72,11 @@ export default function Carousel({ imageUrl }) {
             onClick={() => handleClick(index)}
             aria-label={`View Image ${index}`}
           >
-            {index === imageIndex ? <CircleDot aria-hidden/> : <Circle aria-hidden/>}
+            {index === imageIndex ? (
+              <CircleDot aria-hidden />
+            ) : (
+              <Circle aria-hidden />
+            )}
           </button>
         ))}
       </div>

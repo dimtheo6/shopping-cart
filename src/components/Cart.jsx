@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export default function Cart({ cart, setCart,gameCount,setGameCount }) {
- 
+Cart.propTypes = {
+  cart: PropTypes.array,
+  setCart: PropTypes.func,
+  gameCount: PropTypes.number,
+  setGameCount: PropTypes.func,
+};
+
+export default function Cart({ cart, setCart, gameCount, setGameCount }) {
   const [total, setTotal] = useState(0);
-
-  console.log("games in cart", cart);
 
   useEffect(() => {
     setGameCount(cart.length);
@@ -29,12 +34,17 @@ export default function Cart({ cart, setCart,gameCount,setGameCount }) {
         <div>
           <div className="header flex text-white justify-between pb-5">
             <h1>Items: {gameCount}</h1>
-            <button onClick={handleClear} className="text-neutral-400">clear</button>
+            <button onClick={handleClear} className="text-neutral-400">
+              clear
+            </button>
           </div>
 
           <div className="item_container flex flex-col gap-10">
             {cart.map((game, index) => (
-              <div key={game.id} className="w-full text-white flex flex-col bg-background">
+              <div
+                key={game.id}
+                className="w-full text-white flex flex-col bg-background"
+              >
                 <div className="image">
                   <img
                     src={game.background_image}

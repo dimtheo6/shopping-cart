@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Cart from "./components/Cart";
 import { CartProvider } from "./components/CartContext";
@@ -39,7 +39,8 @@ export default function App() {
   };
 
   const iconStyles = "text-xl flex p-2 min-w-8 ";
-  const buttonStyles = "hover:bg-blue-200 hover:scale-110 rounded-xl bg-white font-bold transition:all duration-200";
+  const buttonStyles =
+    "hover:bg-blue-200 hover:scale-110 rounded-xl bg-white font-bold transition:all duration-200";
 
   const closeCart = () => {
     setCartVisible(false);
@@ -48,8 +49,6 @@ export default function App() {
   const handleClick = (btnQuery) => {
     navigate("/games", { state: { searchQuery: "", btnQuery } });
   };
-
-  console.log("App - Query:", query);
 
   return (
     <>
@@ -66,7 +65,7 @@ export default function App() {
 
           {cartVisible && (
             <div
-              className="fixed top-0 left-0 w-full h-full bg-black opacity-40 z-40" 
+              className="fixed top-0 left-0 w-full h-full bg-black opacity-40 z-40"
               onClick={closeCart}
             ></div>
           )}
@@ -77,7 +76,12 @@ export default function App() {
               cartVisible ? "right-0" : `-right-full`
             } bg-card-background h-full w-80 px-10 py-5 overflow-auto no-scrollbar transition-all duration-500 ease-in-out z-50`}
           >
-            <Cart cart={cart} setCart={setCart} gameCount={gameCount} setGameCount={setGameCount}/>
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              gameCount={gameCount}
+              setGameCount={setGameCount}
+            />
           </div>
 
           <div className=" flex justify-center ">

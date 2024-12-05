@@ -10,6 +10,9 @@ import {
 Header.propTypes = {
   query: PropTypes.string,
   setQuery: PropTypes.func,
+  cartVisible: PropTypes.bool,
+  setCartVisible: PropTypes.func,
+  gameCount: PropTypes.number,
 };
 
 export default function Header({
@@ -46,6 +49,7 @@ export default function Header({
         <input
           type="text"
           value={search}
+          id="search_bar"
           className="right-0 rounded-lg h-8 p-2 w-56 md:focus-visible:w-96 transition-all duration-200 placeholder:text-sm max-sm:w-44
           "
           onKeyDown={(e) => {
@@ -67,12 +71,15 @@ export default function Header({
       </div>
 
       <button className="text-white relative" onClick={handleShowCart}>
-        <FontAwesomeIcon icon={faCartShopping} className="hover:text-blue-300"/>
+        <FontAwesomeIcon
+          icon={faCartShopping}
+          className="hover:text-blue-300"
+        />
         {gameCount > 0 && (
-        <span className="absolute -top-0 -right-3 text-xs bg-blue-600 rounded-full h-4 w-4 flex justify-center items-center">
-          {gameCount}
-        </span>
-      )}
+          <span className="absolute -top-0 -right-3 text-xs bg-blue-600 rounded-full h-4 w-4 flex justify-center items-center">
+            {gameCount}
+          </span>
+        )}
       </button>
     </header>
   );
