@@ -17,4 +17,5 @@
 <b>Technologies</b>
 - React
 - Tailwind CSS
+- Vite
 - RAWG API
