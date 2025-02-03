@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 const CartContext = createContext();
 
+// const {cart,usecart} = useCart()  In the component i want it to use
+
 export const useCart = () => {
   return useContext(CartContext);
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useCart } from "./CartContext";
 
 Cart.propTypes = {
   cart: PropTypes.array,
@@ -8,8 +9,9 @@ Cart.propTypes = {
   setGameCount: PropTypes.func,
 };
 
-export default function Cart({ cart, setCart, gameCount, setGameCount }) {
+export default function Cart({ gameCount, setGameCount }) {
   const [total, setTotal] = useState(0);
+  const {cart,setCart} = useCart()
 
   useEffect(() => {
     setGameCount(cart.length);
